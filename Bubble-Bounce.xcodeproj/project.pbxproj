@@ -8,26 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		D8480CC91EA16D38002A3747 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8480CC81EA16D38002A3747 /* AppDelegate.swift */; };
-		D8480CCB1EA16D38002A3747 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D8480CCA1EA16D38002A3747 /* GameScene.sks */; };
-		D8480CCD1EA16D38002A3747 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = D8480CCC1EA16D38002A3747 /* Actions.sks */; };
 		D8480CCF1EA16D38002A3747 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8480CCE1EA16D38002A3747 /* GameScene.swift */; };
 		D8480CD11EA16D38002A3747 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8480CD01EA16D38002A3747 /* GameViewController.swift */; };
 		D8480CD41EA16D38002A3747 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8480CD21EA16D38002A3747 /* Main.storyboard */; };
 		D8480CD61EA16D38002A3747 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8480CD51EA16D38002A3747 /* Assets.xcassets */; };
 		D8480CD91EA16D38002A3747 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8480CD71EA16D38002A3747 /* LaunchScreen.storyboard */; };
+		D8480CE11EA16F3D002A3747 /* Star.png in Resources */ = {isa = PBXBuildFile; fileRef = D8480CE01EA16F3D002A3747 /* Star.png */; };
+		D8480CE31EA16F5E002A3747 /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8480CE21EA16F5E002A3747 /* Star.swift */; };
+		D8480CE51EA17800002A3747 /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8480CE41EA17800002A3747 /* Bubble.swift */; };
+		D8480CE71EA17DAB002A3747 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8480CE61EA17DAB002A3747 /* Target.swift */; };
+		D8480CE91EA17F27002A3747 /* PhysicsCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8480CE81EA17F27002A3747 /* PhysicsCategories.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D8480CC51EA16D38002A3747 /* Bubble-Bounce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bubble-Bounce.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8480CC81EA16D38002A3747 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D8480CCA1EA16D38002A3747 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		D8480CCC1EA16D38002A3747 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		D8480CCE1EA16D38002A3747 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		D8480CD01EA16D38002A3747 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		D8480CD31EA16D38002A3747 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D8480CD51EA16D38002A3747 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8480CD81EA16D38002A3747 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8480CDA1EA16D38002A3747 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D8480CE01EA16F3D002A3747 /* Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Star.png; sourceTree = "<group>"; };
+		D8480CE21EA16F5E002A3747 /* Star.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
+		D8480CE41EA17800002A3747 /* Bubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bubble.swift; sourceTree = "<group>"; };
+		D8480CE61EA17DAB002A3747 /* Target.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
+		D8480CE81EA17F27002A3747 /* PhysicsCategories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsCategories.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +52,7 @@
 			children = (
 				D8480CC71EA16D38002A3747 /* Bubble-Bounce */,
 				D8480CC61EA16D38002A3747 /* Products */,
+				D8480CE01EA16F3D002A3747 /* Star.png */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,9 +68,11 @@
 			isa = PBXGroup;
 			children = (
 				D8480CC81EA16D38002A3747 /* AppDelegate.swift */,
-				D8480CCA1EA16D38002A3747 /* GameScene.sks */,
-				D8480CCC1EA16D38002A3747 /* Actions.sks */,
 				D8480CCE1EA16D38002A3747 /* GameScene.swift */,
+				D8480CE41EA17800002A3747 /* Bubble.swift */,
+				D8480CE21EA16F5E002A3747 /* Star.swift */,
+				D8480CE61EA17DAB002A3747 /* Target.swift */,
+				D8480CE81EA17F27002A3747 /* PhysicsCategories.swift */,
 				D8480CD01EA16D38002A3747 /* GameViewController.swift */,
 				D8480CD21EA16D38002A3747 /* Main.storyboard */,
 				D8480CD51EA16D38002A3747 /* Assets.xcassets */,
@@ -134,10 +143,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8480CD41EA16D38002A3747 /* Main.storyboard in Resources */,
-				D8480CCB1EA16D38002A3747 /* GameScene.sks in Resources */,
+				D8480CE11EA16F3D002A3747 /* Star.png in Resources */,
 				D8480CD61EA16D38002A3747 /* Assets.xcassets in Resources */,
 				D8480CD91EA16D38002A3747 /* LaunchScreen.storyboard in Resources */,
-				D8480CCD1EA16D38002A3747 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,9 +156,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8480CE71EA17DAB002A3747 /* Target.swift in Sources */,
 				D8480CCF1EA16D38002A3747 /* GameScene.swift in Sources */,
+				D8480CE51EA17800002A3747 /* Bubble.swift in Sources */,
 				D8480CD11EA16D38002A3747 /* GameViewController.swift in Sources */,
+				D8480CE91EA17F27002A3747 /* PhysicsCategories.swift in Sources */,
 				D8480CC91EA16D38002A3747 /* AppDelegate.swift in Sources */,
+				D8480CE31EA16F5E002A3747 /* Star.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

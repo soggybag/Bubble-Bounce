@@ -9,81 +9,128 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+    var stars = [Star]()
+    var targets = [Target]()
     
+    func makeTargetAt(point: CGPoint) {
+        let target = Target()
+        targets.append(target)
+        
+        target.position = point
+        
+        addChild(target)
+        
+        print(target.position)
+        
+        let h = view!.bounds.height
+        let move = SKAction.moveBy(x: 0, y: -h - 200, duration: 5)
+        let seq = SKAction.sequence([move, SKAction.removeFromParent()])
+        target.run(seq)
+    }
+    
+    func makeTargets() {
+        let w = view!.bounds.width
+        let h = view!.bounds.height
+        let range = w - 80
+        
+        let make = SKAction.run {
+            let x = CGFloat(arc4random() % UInt32(range)) + 40
+            let y = CGFloat(arc4random() % 150) + 40 + h
+            self.makeTargetAt(point: CGPoint(x: x, y: y))
+        }
+        
+        let wait = SKAction.wait(forDuration: 2.234)
+        let seq = SKAction.sequence([wait, make])
+        let rep = SKAction.repeatForever(seq)
+        run(rep)
+    }
+    
+    func makeStarAt(point: CGPoint) {
+        let star = Star()
+        stars.append(star)
+        
+        addChild(star)
+        
+        star.position = point
+    }
+    
+    func makeStars() {
+        let w = view!.bounds.width
+        let h = view!.bounds.height
+        let range = w - 80
+        
+        let makeStarAction = SKAction.run {
+            let x = CGFloat(arc4random() % UInt32(range)) + 40
+            let y = CGFloat(arc4random() % 150) + 40 + h
+            self.makeStarAt(point: CGPoint(x: x, y: y))
+        }
+        let wait = SKAction.wait(forDuration: 1)
+        let seq = SKAction.sequence([wait, makeStarAction])
+        let repeatAction = SKAction.repeatForever(seq)
+        self.run(repeatAction)
+    }
+    
+    func makeBubble() {
+        let bubble = Bubble()
+        bubble.position.x = view!.bounds.width / 2
+        bubble.position.y = 100
+        addChild(bubble)
+    }
+    
+    //
     override func didMove(to view: SKView) {
+        physicsWorld.gravity = CGVector(dx: 0, dy: -1)
+        physicsWorld.contactDelegate = self
         
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
-        }
-        
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
-        
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 2.5
-            
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
-        }
+        makeBubble()
+        makeStars()
+        makeTargets()
     }
     
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
-    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-        }
-        
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+        let touch = touches.first!
+        let location = touch.location(in: self)
+        // TODO: position bubble ??
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
+        // TODO: position bubble ??
     }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        for star in stars {
+            if star.position.y < -40 {
+                star.removeFromParent()
+            }
+        }
     }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+        
+        if collision == PhysicsCategories.STAR | PhysicsCategories.TARGET {
+            print("Star Hit Target!")
+        }
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
